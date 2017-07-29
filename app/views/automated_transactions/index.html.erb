@@ -17,14 +17,13 @@
   <tbody>
     <% @automated_transactions.each do |automated_transaction| %>
       <tr>
-        <td><%= automated_transaction.account_id %></td>
+        <td><%= automated_transaction.registration %></td>
         <td><%= automated_transaction.description %></td>
         <td><%= automated_transaction.long_description %></td>
         <td><%= automated_transaction.total %></td>
         <td><%= automated_transaction.status %></td>
-        <td><%= link_to 'Show', automated_transaction %></td>
-        <td><%= link_to 'Edit', edit_automated_transaction_path(automated_transaction) %></td>
-        <td><%= link_to 'Destroy', automated_transaction, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'View', automated_transaction %></td>
+        <td><%= link_to 'Cancel Automated Transaction', automated_transaction, method: :delete, data: { confirm: 'Are you sure? The associated account will no longer be charged for this transaction' } %></td>
       </tr>
     <% end %>
   </tbody>

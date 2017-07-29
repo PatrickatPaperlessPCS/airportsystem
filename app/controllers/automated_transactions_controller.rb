@@ -1,10 +1,11 @@
 class AutomatedTransactionsController < ApplicationController
   before_action :set_automated_transaction, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_airport!
 
   # GET /automated_transactions
   # GET /automated_transactions.json
   def index
-    @automated_transactions = AutomatedTransaction.all
+    @automated_transactions = current_airport.automated_transactions
   end
 
   # GET /automated_transactions/1
@@ -25,11 +26,12 @@ class AutomatedTransactionsController < ApplicationController
   # POST /automated_transactions.json
   def create
     @automated_transaction = AutomatedTransaction.new(automated_transaction_params)
-
+    @automated_transaction.registration = @automated_transaction.account.registration
+    @automated_transaction.airport_id = current_airport.id
     respond_to do |format|
       if @automated_transaction.save
-        format.html { redirect_to @automated_transaction, notice: 'Automated transaction was successfully created.' }
-        format.json { render :show, status: :created, location: @automated_transaction }
+        format.html { redirect_to automated_transactions_path, notice: 'Automated transaction was successfully created.' }
+        format.json { render :show, status: :created, location: automated_transactions_path }
       else
         format.html { render :new }
         format.json { render json: @automated_transaction.errors, status: :unprocessable_entity }

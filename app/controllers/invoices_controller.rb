@@ -1,13 +1,10 @@
 class InvoicesController < ApplicationController
-  before_action :authenticate_airport!
   before_action :set_invoice, only: [:show, :edit, :update, :destroy]
-
-
 
   # GET /invoices
   # GET /invoices.json
   def index
-    @invoices = current_airport.invoices
+    @invoices = current_airport.invoices.order("created_at DESC")
     # current_user.patients.order("created_at DESC")
     # TODO - remove for Airport level authenication.
     # if current_airport.type = 1
