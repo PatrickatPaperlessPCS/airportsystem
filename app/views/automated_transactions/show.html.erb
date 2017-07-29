@@ -22,18 +22,22 @@
                 <td colspan="2">
                     <table>
                         <tr>
-                            <td>
-                                Next Step Webs, Inc.<br>
-                                12345 Sunny Road<br>
-                                Sunnyville, TX 12345
+                              <td>
+                                <%= current_airport.name %><br>
+                                <%= current_airport.address1 %><br>
+                                <%= current_airport.address2 %><br>
+                                <%= current_airport.city %>, <%= current_airport.state %> <%= current_airport.zip %>
                             </td>
                             
                             <td>
-                            <strong>Aircraft Registration:</strong>
-                                Acme Corp.<br>
-                                John Doe<br>
-                                john@example.com
+                            <strong>Aircraft Registration:</strong> <%= @automated_transaction.account.registration %><br>
+                            <%= @automated_transaction.account.owner %><br>
+                            <%= @automated_transaction.account.address1 %><br>
+                            <%= @automated_transaction.account.address2 %><br>
+                            <%= @automated_transaction.account.city %>,<%= @automated_transaction.account.state %> <%= @automated_transaction.account.zip %><br>
+                            <%= @automated_transaction.account.email %>
                             </td>
+                        </tr>
                         </tr>
                     </table>
                 </td>
