@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :inventories
+  get 'pages/index'
+
   resources :accounts
   resources :payments
   devise_for :airports
@@ -9,7 +12,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'payments#index'
+  root 'pages#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

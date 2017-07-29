@@ -6,4 +6,5 @@ class Airport < ActiveRecord::Base
 
          has_many :invoices
          has_many :accounts
+         has_many :inventories
 end

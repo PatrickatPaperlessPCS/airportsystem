@@ -1,8 +1,178 @@
 <p id="notice"><%= notice %></p>
-registration <%= @account.registration %><br>
-balance:<%= @account.balance %> 
-<br>
-<br>
+ <body class="subdued">
+  </br>
+  <div class="modal-dialog">
+    <div class="modal-content">
 
-<%= link_to 'Edit', edit_account_path(@account) %> |
-<%= link_to 'Back', accounts_path %>
+      <div class="modal-body">
+      	    <h4>Account Listing</h4>
+		  <div class="form-inputs">
+			<strong>Registration</strong>
+			<%= @account.registration %><br>
+			<strong>Owner</strong>
+			<%= @account.owner %><br>
+			<strong>Address:</strong>
+			<%= @account.address1 %><br>
+			<%= @account.address2 %><br>
+			<strong>City</strong>
+			<%= @account.city %><br>
+			<strong>State</strong>
+			<%= @account.state%><br>
+			<strong>Zip</strong>
+			<%= @account.zip %><br>
+			<strong>Email Address:</strong>
+			<%= @account.email %><br>
+			<strong>Outstanding Balance:</strong>
+			<%= @account.balance %> 
+			<br>
+			<br>
+			<center>
+			<%= link_to 'Edit', edit_account_path(@account) %> |
+			<%= link_to 'Back', accounts_path %>
+			</center>
+	      </div>
+	    </div>
+	  </div>
+<br>
+<div class="page-break" >
+    <div class="invoice-box">
+        <table cellpadding="0" cellspacing="0">
+            <tr class="top">
+                <td colspan="2">
+                    <table>
+                        <tr>
+                            <td class="title center">
+                             Paid Invoices
+                            </td>
+                            
+                            <td>
+
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            
+            <tr class="information">
+                <td colspan="2">
+                    <table>
+                        <tr>
+                            <td>
+                                <%= current_airport.name %><br>
+                                <%= current_airport.address1 %><br>
+                                <%= current_airport.address2 %><br>
+                                <%= current_airport.city %>, <%= current_airport.state %> <%= current_airport.zip %>
+                            </td>
+                            
+                            <td>
+                            <strong>Aircraft Registration:</strong><%= @account.registration %><br>
+                            <%= @account.owner %><br>
+                            <%= @account.address1 %><br>
+                            <%= @account.address2 %><br>
+                            <%= @account.city %>,<%= @account.state %> <%= @account.zip %><br>
+                            <%= @account.email %>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+</div>            
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Invoice Number</th>
+          <th>Invoice Date</th>
+          <th>Invoice Total</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @account.invoices.paid.each do |invoice| %>
+          <tr>
+            <td><%= invoice.id%> </td>
+            <td style="text-align: left;"><%= invoice.created_at.time.to_formatted_s(:long)%> Zulu </td>
+            <td><%= invoice.total %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <div class="right">
+
+    </div>
+            </table>
+        </div>
+    </body>
+    </html>
+<br>
+<div class="page-break" >
+        <div class="invoice-box">
+            <table cellpadding="0" cellspacing="0">
+                <tr class="top">
+                    <td colspan="2">
+                        <table>
+                            <tr>
+                                <td class="title center">
+                                 Unpaid Invoices
+                                </td>
+                                
+                                <td>
+
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                
+                <tr class="information">
+                    <td colspan="2">
+                        <table>
+                            <tr>
+                                <td>
+                                    <%= current_airport.name %><br>
+                                    <%= current_airport.address1 %><br>
+                                    <%= current_airport.address2 %><br>
+                                    <%= current_airport.city %>, <%= current_airport.state %> <%= current_airport.zip %>
+                                </td>
+                                
+                                <td>
+                                <strong>Aircraft Registration:</strong><%= @account.registration %><br>
+                                <%= @account.owner %><br>
+                                <%= @account.address1 %><br>
+                                <%= @account.address2 %><br>
+                                <%= @account.city %>,<%= @account.state %> <%= @account.zip %><br>
+                                <%= @account.email %>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Invoice Number</th>
+          <th>Invoice Date</th>
+          <th>Invoice Total</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @account.invoices.unpaid.each do |invoice| %>
+          <tr>
+            <td><%= invoice.id%> </td>
+            <td style="text-align: left;"><%= invoice.created_at.time.to_formatted_s(:long)%> Zulu </td>
+            <td><%= invoice.total %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <div class="right">
+
+    </div>
+            </table>
+        </div>
+</div>
+
+<%= link_to 'Back', invoices_path %>

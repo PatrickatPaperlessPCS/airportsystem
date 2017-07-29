@@ -1,0 +1,14 @@
+<%= simple_form_for(@inventory) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs padding1">
+    <%= f.input :description %>
+    <%= f.input :units_on_hand %>
+    <%= f.input :tax_rate %>
+    <%= f.input :price %>
+  </div>
+
+  <div class="form-actions padding1">
+    <%= f.button :submit, 'Create New Inventory Item' %>
+  </div>
+<% end %>

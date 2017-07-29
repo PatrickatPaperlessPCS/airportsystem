@@ -34,6 +34,7 @@ class InvoicesController < ApplicationController
   def create
     @invoice = Invoice.new(invoice_params)
     @invoice.airport_id = current_airport.id
+    @invoice.registration = @invoice.account.registration
       # if @invoice.user_id.present?
       #   #handle if user_id linked
       # else 

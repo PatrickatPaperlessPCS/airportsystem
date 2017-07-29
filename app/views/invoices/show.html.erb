@@ -18,23 +18,29 @@
                 </td>
             </tr>
             
-            <tr class="information">
+<tr class="information">
                 <td colspan="2">
                     <table>
                         <tr>
                             <td>
-                                Next Step Webs, Inc.<br>
-                                12345 Sunny Road<br>
-                                Sunnyville, TX 12345
+                                <%= current_airport.name %><br>
+                                <%= current_airport.address1 %><br>
+                                <%= current_airport.address2 %><br>
+                                <%= current_airport.city %>, <%= current_airport.state %> <%= current_airport.zip %>
                             </td>
                             
+                            <% if @invoice.account.present? %>
                             <td>
-                            <strong>Aircraft Registration:</strong>
-                            <%= @invoice.registration %><br>
-                                Acme Corp.<br>
-                                John Doe<br>
-                                john@example.com
+                            <strong>Aircraft Registration:</strong><%= @invoice.account.registration %><br>
+                            <%= @invoice.account.owner %><br>
+                            <%= @invoice.account.address1 %><br>
+                            <%= @invoice.account.address2 %><br>
+                            <%= @invoice.account.city %>,<%= @invoice.account.state %> <%= @invoice.account.zip %><br>
+                            <%= @invoice.account.email %>
                             </td>
+                            <% else %>
+                            <td>Cash Account Purchase</td>
+                            <% end %>
                         </tr>
                     </table>
                 </td>
@@ -90,9 +96,9 @@
 </div>
         </table>
     </div>
-</body>
-</html>
 
 
-
-<%= link_to 'Back', invoices_path %>
+<br>
+<center>
+<%= button_to('Back', invoices_path, method: :get, class: 'btn btn-primary') %>
+</center>

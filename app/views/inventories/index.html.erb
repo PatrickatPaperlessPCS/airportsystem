@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Items in Inventory</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Description</th>
+      <th>Units on hand</th>
+      <th>Tax rate</th>
+      <th>Price</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @inventories.each do |inventory| %>
+      <tr>
+        <td><%= inventory.description %></td>
+        <td><%= inventory.units_on_hand %></td>
+        <td><%= inventory.tax_rate %></td>
+        <td><%= inventory.price %></td>
+        <td><%= link_to 'Show', inventory %></td>
+        <td><%= link_to 'Edit', edit_inventory_path(inventory) %></td>
+        <td><%= link_to 'Destroy', inventory, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<center>
+<%= button_to('Enter New Item into Inventory', new_inventory_path, method: :get, class: 'btn btn-primary') %>
+</center>

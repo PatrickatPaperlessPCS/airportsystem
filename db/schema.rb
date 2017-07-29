@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170728193932) do
+ActiveRecord::Schema.define(version: 20170729203327) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,14 @@ ActiveRecord::Schema.define(version: 20170728193932) do
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
     t.integer  "airport_id"
+    t.string   "owner"
+    t.string   "address1"
+    t.string   "address2"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
+    t.string   "email"
+    t.string   "telephone"
   end
 
   create_table "airports", force: :cascade do |t|
@@ -40,6 +48,13 @@ ActiveRecord::Schema.define(version: 20170728193932) do
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.integer  "type"
+    t.string   "name"
+    t.string   "address1"
+    t.string   "address2"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
+    t.string   "phone"
   end
 
   add_index "airports", ["email"], name: "index_airports_on_email", unique: true, using: :btree
@@ -58,6 +73,16 @@ ActiveRecord::Schema.define(version: 20170728193932) do
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
     t.string   "registration"
+  end
+
+  create_table "inventories", force: :cascade do |t|
+    t.string   "description"
+    t.decimal  "units_on_hand"
+    t.decimal  "tax_rate"
+    t.decimal  "price"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "airport_id"
   end
 
   create_table "invoices", force: :cascade do |t|

@@ -1,10 +1,32 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-.right{
-	text-align: right;
-	padding-right: 50px;
+@media print {
+  .page-break {
+    display: block; 
+    page-break-before: always; 
+  }
+  a[href]:after {
+    content: none !important;
+    // use important only if you are not able to override it by normal styling 
+    }
 }
+
+
+    .padding1{
+        padding: 10px;
+    }
+    .center{
+        text-align: center;
+    }
+    .align-right{
+        text-align: right;
+    }
+
+    .right{
+    	text-align: right;
+    	padding-right: 50px;
+    }
 
     .invoice-box{
         max-width:800px;

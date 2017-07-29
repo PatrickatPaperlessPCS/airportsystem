@@ -12,7 +12,9 @@ class Invoice < ActiveRecord::Base
 		#   total = line_items.map(&:total).reduce(:+)
 		# end
 
-		
+		scope :unpaid, -> {where(paid: [nil, false])}
+		scope :paid, -> {where(paid: true)}
+
 
 		def compute_total_amount
 			puts "this worked" 

@@ -1,5 +1,7 @@
 <tr>
-  <td><%= f.select :description, ['Fuel - 100 LL', 'Fuel - JetA', 'Fuel - JetA + Prist', 'Oil', 'Parking', 'Service', 'Ramp Fee', 'Other'], :prompt => 'Select One' %></td>
+  <td>
+    <%= f.collection_select :description, current_airport.inventories, :description, :description, include_blank: "Other" %>
+</td>
   <td><%= f.input :long_description, label: false %></td>
   <td><%= f.input :price, label: false %></td>
   <td><%= f.input :units, label: false %></td>
