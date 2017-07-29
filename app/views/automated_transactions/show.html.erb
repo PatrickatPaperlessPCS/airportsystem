@@ -1,0 +1,92 @@
+<p id="notice"><%= notice %></p>
+
+<p id="notice"><%= notice %></p>
+<body>
+    <div class="invoice-box">
+        <table cellpadding="0" cellspacing="0">
+            <tr class="top">
+                <td colspan="2">
+                    <table>
+                        <tr>
+                            <td class="title">
+                                <img src="http://nextstepwebs.com/images/logo.png" style="width:100%; max-width:300px;">
+                            </td>
+                            
+                            <td>
+                                Invoice #: <%= @automated_transaction.id %><br>
+                                Created: <%= @automated_transaction.created_at.to_formatted_s(:long)  %> Zulu<br>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            
+            <tr class="information">
+                <td colspan="2">
+                    <table>
+                        <tr>
+                            <td>
+                                Next Step Webs, Inc.<br>
+                                12345 Sunny Road<br>
+                                Sunnyville, TX 12345
+                            </td>
+                            
+                            <td>
+                            <strong>Aircraft Registration:</strong>
+                                Acme Corp.<br>
+                                John Doe<br>
+                                john@example.com
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Item</th>
+      <th>Description</th>
+      <th>Total</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+      <tr>
+        <td><%= @automated_transaction.description %> </td>
+        <td style="text-align: left;"><%= @automated_transaction.long_description %></td>
+
+        <td>  <%= @automated_transaction.subtotal %>
+</td>
+      </tr>
+
+  </tbody>
+</table>
+<div class="right">
+
+<p>
+  <strong>Subtotal:</strong>
+  <%= @automated_transaction.subtotal %>
+</p>
+
+<p>
+  <strong>Tax:</strong>
+  <%= @automated_transaction.tax %>
+</p>
+
+<p>
+  <strong>Total:</strong>
+  <%= @automated_transaction.total %>
+</p>
+</div>
+        </table>
+    </div>
+</body>
+</html>
+
+
+
+<%= link_to 'Edit', edit_automated_transaction_path(@automated_transaction) %> |
+<%= link_to 'Back', automated_transactions_path %>

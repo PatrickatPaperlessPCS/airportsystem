@@ -1,0 +1,31 @@
+<%= simple_form_for(@invoice) do |f| %>
+  <%= f.error_notification %>
+  <div class="form-inputs">
+    <h4>Aircraft Registration:</h4>
+    <%= f.collection_select :account_id, current_airport.accounts, :id, :registration, include_blank: "Cash Transaction" %>
+  </div>
+
+  <table class='table invoice-table'>
+    <thead>
+      <tr>
+      <th>Item</th>
+      <th>Description</th>
+      <th>Price</th>
+      <th>Units</th>
+      <th>Taxable</th>
+      <th></th>
+      </tr>
+    </thead>
+    <tbody class='fields'>
+      <%= f.simple_fields_for :line_items do |builder| %>
+        <%= render 'line_item', f: builder %>
+      <% end %>
+    </tbody>
+  </table>
+
+  <div class="form-actions">
+     <div style="float: right;"><%= link_to_add_row('Add a line', f, :line_items, class: 'btn btn-primary') %></div>
+    <%= f.button :submit, class: 'btn btn-warning' %>
+  </div>
+<% end %>
+

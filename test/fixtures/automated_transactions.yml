@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  account_id: 1
+  description: MyString
+  long_description: MyString
+  subtotal: 9.99
+  taxable: false
+  tax: 9.99
+  total: 9.99
+  paid: false
+  status: MyString
+
+two:
+  account_id: 1
+  description: MyString
+  long_description: MyString
+  subtotal: 9.99
+  taxable: false
+  tax: 9.99
+  total: 9.99
+  paid: false
+  status: MyString

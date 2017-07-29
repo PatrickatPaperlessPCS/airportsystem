@@ -1,0 +1,98 @@
+<p id="notice"><%= notice %></p>
+<body>
+    <div class="invoice-box">
+        <table cellpadding="0" cellspacing="0">
+            <tr class="top">
+                <td colspan="2">
+                    <table>
+                        <tr>
+                            <td class="title">
+                            </td>
+                            
+                            <td>
+                                Invoice #: <%= @invoice.id %><br>
+                                Created: <%= @invoice.created_at.to_formatted_s(:long)  %> Zulu<br>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            
+            <tr class="information">
+                <td colspan="2">
+                    <table>
+                        <tr>
+                            <td>
+                                Next Step Webs, Inc.<br>
+                                12345 Sunny Road<br>
+                                Sunnyville, TX 12345
+                            </td>
+                            
+                            <td>
+                            <strong>Aircraft Registration:</strong>
+                            <%= @invoice.registration %><br>
+                                Acme Corp.<br>
+                                John Doe<br>
+                                john@example.com
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Item</th>
+      <th>Description</th>
+      <th>Price</th>
+      <th>Units</th>
+      <th>Tax</th>
+      <th>Item Total</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @invoice.line_items.each do |line_item| %>
+      <tr>
+        <td><%= line_item.description %> </td>
+        <td style="text-align: left;"><%= line_item.long_description %></td>
+        <td><%= line_item.price %></td>
+        <td><%= line_item.units %></td>
+        <td><%= line_item.tax_amount %></td>
+        <td><%= line_item.total %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<div class="right">
+<p>
+  <strong>Paid:</strong>
+  <%= @invoice.paid %>
+</p>
+
+<p>
+  <strong>Subtotal:</strong>
+  <%= @invoice.subtotal %>
+</p>
+
+<p>
+  <strong>Tax:</strong>
+  <%= @invoice.tax %>
+</p>
+
+<p>
+  <strong>Total:</strong>
+  <%= @invoice.total %>
+</p>
+</div>
+        </table>
+    </div>
+</body>
+</html>
+
+
+
+<%= link_to 'Back', invoices_path %>

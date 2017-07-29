@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Automated Transactions</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Account</th>
+      <th>Description</th>
+      <th>Long description</th>
+      <th>Total</th>
+      <th>Status</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @automated_transactions.each do |automated_transaction| %>
+      <tr>
+        <td><%= automated_transaction.account_id %></td>
+        <td><%= automated_transaction.description %></td>
+        <td><%= automated_transaction.long_description %></td>
+        <td><%= automated_transaction.total %></td>
+        <td><%= automated_transaction.status %></td>
+        <td><%= link_to 'Show', automated_transaction %></td>
+        <td><%= link_to 'Edit', edit_automated_transaction_path(automated_transaction) %></td>
+        <td><%= link_to 'Destroy', automated_transaction, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<center>
+<%= button_to('Create a new Automated Transaction', new_automated_transaction_path, method: :get, class: 'btn btn-primary') %>
+</center>

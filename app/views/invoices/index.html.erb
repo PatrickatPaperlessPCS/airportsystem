@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Invoices</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Registration</th>
+      <th>Paid</th>
+      <th>Total</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @invoices.each do |invoice| %>
+      <tr>
+        <td><%= invoice.registration %></td>
+        <td><%= invoice.paid %></td>
+        <td><%= invoice.creator_id %></td>
+        <td><%= invoice.subtotal %></td>
+        <td><%= invoice.tax %></td>
+        <td><%= invoice.total %></td>
+        <td><%= link_to 'View Invoice', invoice %></td>
+        <td><%= link_to 'Delete', invoice, method: :delete, data: { confirm: 'Are you sure? The customer will not be billed for the invoice amount if the invoice is deleted!' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<center>
+
+<%= button_to('New Invoice', new_invoice_path, method: :get, class: 'btn btn-primary')%>
+</center>

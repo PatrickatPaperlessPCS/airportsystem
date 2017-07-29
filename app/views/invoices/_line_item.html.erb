@@ -1,0 +1,13 @@
+<tr>
+  <td><%= f.select :description, ['Fuel - 100 LL', 'Fuel - JetA', 'Fuel - JetA + Prist', 'Oil', 'Parking', 'Service', 'Ramp Fee', 'Other'], :prompt => 'Select One' %></td>
+  <td><%= f.input :long_description, label: false %></td>
+  <td><%= f.input :price, label: false %></td>
+  <td><%= f.input :units, label: false %></td>
+  <td><%= f.check_box :tax, label: false %></td>
+
+  <td>
+    <%= f.input_field :_destroy, as: :hidden %>
+    <%= link_to 'Delete', '#', class: 'remove_record' %>
+  </td>
+</tr>
+
