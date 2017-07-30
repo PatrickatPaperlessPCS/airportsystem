@@ -4,7 +4,8 @@ class AccountsController < ApplicationController
   # GET /accounts
   # GET /accounts.json
   def index
-    @accounts = Account.all
+    @accounts = current_airport.accounts.order("created_at DESC").paginate(:page => params[:page], :per_page => 15)
+    # @accounts = Account.all
   end
 
   # GET /accounts/1
@@ -12,6 +13,8 @@ class AccountsController < ApplicationController
   def show
   end
 
+  def unpaid_invoices
+  end
   # GET /accounts/new
   def new
     @account = Account.new

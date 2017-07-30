@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170729215955) do
+ActiveRecord::Schema.define(version: 20170730214747) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -114,7 +114,11 @@ ActiveRecord::Schema.define(version: 20170729215955) do
     t.integer  "invoice_id"
     t.decimal  "total"
     t.decimal  "tax_amount"
+    t.decimal  "tax_rate"
+    t.integer  "inventory_id"
   end
+
+  add_index "line_items", ["inventory_id"], name: "index_line_items_on_inventory_id", using: :btree
 
   create_table "payments", force: :cascade do |t|
     t.decimal  "amount"
@@ -124,4 +128,5 @@ ActiveRecord::Schema.define(version: 20170729215955) do
   end
 
   add_foreign_key "invoices", "accounts"
+  add_foreign_key "line_items", "inventories"
 end

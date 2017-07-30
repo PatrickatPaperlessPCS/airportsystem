@@ -4,7 +4,7 @@ class InvoicesController < ApplicationController
   # GET /invoices
   # GET /invoices.json
   def index
-    @invoices = current_airport.invoices.order("created_at DESC")
+    @invoices = current_airport.invoices.order("created_at DESC").paginate(:page => params[:page], :per_page => 15)
     # current_user.patients.order("created_at DESC")
     # TODO - remove for Airport level authenication.
     # if current_airport.type = 1
@@ -31,7 +31,9 @@ class InvoicesController < ApplicationController
   def create
     @invoice = Invoice.new(invoice_params)
     @invoice.airport_id = current_airport.id
+    if @invoice.account
     @invoice.registration = @invoice.account.registration
+    end
       # if @invoice.user_id.present?
       #   #handle if user_id linked
       # else 
@@ -83,7 +85,7 @@ class InvoicesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def invoice_params
-      params.require(:invoice).permit(:_destroy, :account_id, :user_id, :registration, :paid, :airport_id, :subtotal, :tax, :total, line_items_attributes: [:_destroy, :description, :long_description, :price, :units, :tax, :invoice_id, :total])
+      params.require(:invoice).permit(:_destroy, :account_id, :user_id, :registration, :paid, :airport_id, :subtotal, :tax, :total, line_items_attributes: [:_destroy, :description, :long_description, :price, :units, :tax_rate, :invoice_id, :total, :inventory_id])
     end
 
     def account_already_exists?

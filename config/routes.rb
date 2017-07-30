@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   resources :inventories
   get 'pages/index'
 
-  resources :accounts
+  resources :accounts 
   resources :payments
   devise_for :airports
   resources :automated_transactions

@@ -1,0 +1,69 @@
+<h2>Unpaid Invoices</h2>
+        <div class="invoice-box">
+            <table cellpadding="0" cellspacing="0">
+                <tr class="top">
+                    <td colspan="2">
+                        <table>
+                            <tr>
+                                <td class="title center">
+                                 Unpaid Invoices
+                                </td>
+                                
+                                <td>
+
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                
+                <tr class="information">
+                    <td colspan="2">
+                        <table>
+                            <tr>
+                                <td>
+                                    <%= current_airport.name %><br>
+                                    <%= current_airport.address1 %><br>
+                                    <%= current_airport.address2 %><br>
+                                    <%= current_airport.city %>, <%= current_airport.state %> <%= current_airport.zip %>
+                                </td>
+                                
+                                <td>
+                                <strong>Aircraft Registration:</strong><%= account.registration %><br>
+                                <%= account.owner %><br>
+                                <%= account.address1 %><br>
+                                <%= account.address2 %><br>
+                                <%= account.city %>,<%= account.state %> <%= account.zip %><br>
+                                <%= account.email %>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Invoice Number</th>
+          <th>Invoice Date</th>
+          <th>Invoice Total</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @account.invoices.unpaid.each do |invoice| %>
+          <tr>
+            <td><%= invoice.id%> </td>
+            <td style="text-align: left;"><%= invoice.created_at.time.to_formatted_s(:long)%> Zulu </td>
+            <td><%= invoice.total %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <div class="right">
+
+    </div>
+            </table>
+        </div>
+</div>

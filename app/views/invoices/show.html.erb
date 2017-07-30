@@ -63,12 +63,18 @@
   <tbody>
     <% @invoice.line_items.each do |line_item| %>
       <tr>
-        <td><%= line_item.description %> </td>
+        <td>
+          <% if line_item.inventory.present? %>
+          <%= line_item.inventory.description %>
+          <% else %>
+          Other
+          <% end %>
+           </td>
         <td style="text-align: left;"><%= line_item.long_description %></td>
         <td><%= line_item.price %></td>
         <td><%= line_item.units %></td>
-        <td><%= line_item.tax_amount %></td>
-        <td><%= line_item.total %></td>
+        <td><%= number_to_currency(line_item.tax_amount) %></td>
+        <td><%= number_to_currency(line_item.total) %></td>
       </tr>
     <% end %>
   </tbody>
@@ -86,12 +92,12 @@
 
 <p>
   <strong>Tax:</strong>
-  <%= @invoice.tax %>
+  <%= @invoice.line_items.sum(:tax_amount) %>
 </p>
 
 <p>
   <strong>Total:</strong>
-  <%= @invoice.total %>
+  <%= number_to_currency(@invoice.total) %>
 </p>
 </div>
         </table>

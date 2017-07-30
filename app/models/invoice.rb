@@ -3,7 +3,7 @@ class Invoice < ActiveRecord::Base
 	belongs_to :account, touch: true
 	has_many :line_items, dependent: :destroy
 	accepts_nested_attributes_for :line_items, reject_if: :all_blank, allow_destroy: true
-
+	after_save :deduct_from_inventory
 
 	validates_presence_of :line_items
 
@@ -17,11 +17,15 @@ class Invoice < ActiveRecord::Base
 
 
 		def compute_total_amount
-			puts "this worked" 
 			puts self.line_items.inspect
 		   	sum = 0
-			self.line_items.each { |l| sum = sum + l.calculated_total.to_i  }
-			puts sum
+			self.line_items.each { |l| sum = sum + l.calculated_total }
 			self.total = sum
 		end 
+
+		def deduct_from_inventory
+			self.line_items.each do |line_item|
+				line_item.inventory.deduct(line_item.units)
+			end
+		end
 end
