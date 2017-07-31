@@ -24,8 +24,10 @@ class Invoice < ActiveRecord::Base
 		end 
 
 		def deduct_from_inventory
-			self.line_items.each do |line_item|
-				line_item.inventory.deduct(line_item.units)
-			end
+				self.line_items.each do |line_item|
+					if line_item.inventory.present?
+					line_item.inventory.deduct(line_item.units)
+					end
+			end	
 		end
 end
