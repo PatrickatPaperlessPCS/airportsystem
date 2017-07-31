@@ -5,7 +5,11 @@ class ApplicationController < ActionController::Base
   before_action :logged_in, unless: :devise_controller? 
   before_action :configure_permitted_parameters, if: :devise_controller?
 
-   
+  
+    def after_sign_in_path_for(airports)
+      invoices_path
+    end  
+    
      protected
 
     def logged_in
