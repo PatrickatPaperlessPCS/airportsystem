@@ -16,7 +16,7 @@
     <% @accounts.each do |account| %>
       <tr>
         <td><%= account.registration %></td>
-        <td><%= account.calculated_balance %></td>
+        <td><%= number_to_currency(account.calculated_balance) %></td>
         <td><%= account.last_payment_date %></td>
         <td><%= link_to 'Show', account %></td>
         <td><%= link_to 'Edit', edit_account_path(account) %></td>
