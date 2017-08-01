@@ -28,7 +28,7 @@ class InventoriesController < ApplicationController
     @inventory.airport_id = current_airport.id
     respond_to do |format|
       if @inventory.save
-        format.html { redirect_to @inventory, notice: 'Inventory was successfully created.' }
+        format.html { redirect_to inventories_path, notice: 'Inventory was successfully created.' }
         format.json { render :show, status: :created, location: @inventory }
       else
         format.html { render :new }
