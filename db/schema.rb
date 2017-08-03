@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170730214747) do
+ActiveRecord::Schema.define(version: 20170803203911) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,9 @@ ActiveRecord::Schema.define(version: 20170730214747) do
     t.string   "zip"
     t.string   "email"
     t.string   "telephone"
+    t.string   "owner_first_name"
+    t.string   "owner_last_name"
+    t.string   "company"
   end
 
   create_table "airports", force: :cascade do |t|
@@ -55,6 +58,12 @@ ActiveRecord::Schema.define(version: 20170730214747) do
     t.string   "state"
     t.string   "zip"
     t.string   "phone"
+    t.string   "token"
+    t.string   "secret"
+    t.string   "realm_id"
+    t.string   "access_token"
+    t.string   "access_secret"
+    t.string   "company_id"
   end
 
   add_index "airports", ["email"], name: "index_airports_on_email", unique: true, using: :btree

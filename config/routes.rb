@@ -14,6 +14,9 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'pages#index'
 
+
+  match 'auth/:provider/callback' => 'accounts#oauth_success', via: :all
+  match 'auth/failure' => 'accounts#oauth_failure', via: :all
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

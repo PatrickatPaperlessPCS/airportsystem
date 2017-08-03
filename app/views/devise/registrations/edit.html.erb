@@ -21,6 +21,16 @@
     <%= f.input :password_confirmation, required: false %>
     <%= f.input :current_password, hint: "we need your current password to confirm your changes", required: true %>
   </div>
+   <% unless current_airport.token.present? %>
+      <ipp:connectToIntuit></ipp:connectToIntuit>
+    <% end %>
+
+    <% if notice %>
+      <div style="padding: 10px;background: gainsboro;font-weight: 900;width: 50%;"><%= notice %></div>
+    <% end %>
+
+    <%= yield %>
+
 
   <div class="form-actions">
     <%= f.button :submit, "Update" %>

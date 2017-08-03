@@ -29,6 +29,10 @@ gem 'stripe'
 gem 'figaro'
 gem 'will_paginate', '~> 3.1.0'
 gem 'rails_12factor', group: :production
+gem 'quickbooks-ruby'
+gem 'qbo_api'
+gem 'omniauth-openid'
+gem 'omniauth-quickbooks'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
