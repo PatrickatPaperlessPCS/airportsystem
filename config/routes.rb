@@ -14,9 +14,13 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'pages#index'
 
-
-  match 'auth/:provider/callback' => 'accounts#oauth_success', via: :all
-  match 'auth/failure' => 'accounts#oauth_failure', via: :all
+  # resources :quickbooks_authorizations
+    match 'quickbooks_authorizations/create' => 'quickbooks_authorizations#create', via: :get
+    match 'quickbooks_authorizations/new' => 'quickbooks_authorizations#new', via: :get
+    match 'quickbooks_authorizations/create_quickbooks_accounts' => 'quickbooks_authorizations#create_quickbooks_accounts', via: :get
+    match 'quickbooks_authorizations/select_accounts' => 'quickbooks_authorizations#select_accounts', via: :get
+  # match 'auth/:provider/callback' => 'quickbooks_authorizations#new', via: :all
+  # match 'auth/failure' => 'quickbooks_authorizations#failure', via: :all
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

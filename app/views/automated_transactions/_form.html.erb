@@ -18,7 +18,7 @@
 
         <div class="field">
           <strong>Aircraft Registration:</strong>
-          <%= f.collection_select :account_id, current_airport.accounts, :id, :registration, include_blank: true %>
+          <%= f.collection_select :account_id, current_airport.accounts, :id, :registration, include_blank: false %>
         </div>
         <div class="field">
           <%= f.label :description %><br>
@@ -32,12 +32,8 @@
           Price<br>
           <%= f.text_field :subtotal %>
         </div>
-        <div class="field">
-          <%= f.label :taxable %><br>
-          <%= f.check_box :taxable %>
-        </div>
         <div class="actions">
-          <%= f.submit %>
+          <%= button_to('Create a new Automatic Recurring Transaction', class: 'btn btn-primary') %>
         </div>
         </div>
     </div>

@@ -8,4 +8,6 @@ class Airport < ActiveRecord::Base
          has_many :accounts
          has_many :inventories
          has_many :automated_transactions
+
+
 end

@@ -2,8 +2,8 @@ class LineItem < ActiveRecord::Base
 	belongs_to :invoice
 	belongs_to :inventory
 	before_save :persist_calculations
-
 	validates_presence_of :price, :units
+	belongs_to :airport
 
 	def calculated_total
 		price * units + calculated_tax
@@ -21,4 +21,6 @@ class LineItem < ActiveRecord::Base
 		self.total = calculated_total
 		self.tax_amount = calculated_tax
 	end
+
+	
 end

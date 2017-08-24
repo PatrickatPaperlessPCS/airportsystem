@@ -4,8 +4,10 @@ class Invoice < ActiveRecord::Base
 	has_many :line_items, dependent: :destroy
 	accepts_nested_attributes_for :line_items, reject_if: :all_blank, allow_destroy: true
 	after_save :deduct_from_inventory
-
+	belongs_to :airport
 	validates_presence_of :line_items
+
+	# after_save :create_quickbooks_invoice
 
 # sum up the total for all it's nested line items
 		# def calculate_total_amount
@@ -14,7 +16,6 @@ class Invoice < ActiveRecord::Base
 
 		scope :unpaid, -> {where(paid: [nil, false])}
 		scope :paid, -> {where(paid: true)}
-
 
 		def compute_total_amount
 			puts self.line_items.inspect
@@ -30,4 +31,28 @@ class Invoice < ActiveRecord::Base
 					end
 			end	
 		end
+
+		def create_quickbooks_invoice
+			if self.airport.token.present?
+					qbo_api = QboApi.new(access_token: self.airport.token, realm_id: self.airport.realm_id)
+
+					  invoice = {
+						    "Line": [
+						      {
+						        "Amount": 100.00,
+						        "DetailType": "SalesItemLineDetail",
+						        "SalesItemLineDetail": {
+						          "ItemRef": {
+						            "name": self.line_items.first.description
+						          }
+						        }
+						      }
+						    ],
+						    "CustomerRef": {
+						      "value": self.account.quickbooks_customer_id
+						    }
+						  }
+						  response = qbo_api.create(:invoice, payload: invoice)
+			end 
+		end 
 end

@@ -18,8 +18,8 @@
         <td><%= account.registration %></td>
         <td><%= number_to_currency(account.balance) %></td>
         <td><%= account.last_payment_date %></td>
-        <td><%= link_to 'Show', account %></td>
-        <td><%= link_to 'Edit', edit_account_path(account) %></td>
+        <td><%= link_to 'View Account Details', account %></td>
+        <td><%= link_to 'Edit Account Information', edit_account_path(account) %></td>
         <td><%= link_to 'Destroy', account, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
@@ -28,6 +28,6 @@
 
 <br>
 <center>
-
+<%= will_paginate @accounts %>
 <%= button_to('Create a New Account', new_account_path, method: :get, class: 'btn btn-primary')%>
 </center>

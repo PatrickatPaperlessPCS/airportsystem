@@ -3,7 +3,10 @@ require 'qbo_api'
 	has_many :payments
 	has_many :invoices, dependent: :destroy
 	after_touch :persist_account_balance
-	after_create :create_quickbooks_invoice
+	# after_create :create_quickbooks_customer
+	belongs_to :airport
+
+	scope :open, -> {where(account_closed: [nil, false])}
 
 	def calculated_balance
 		invoices.sum(:total)
@@ -11,40 +14,38 @@ require 'qbo_api'
 
 	def persist_account_balance
 		self.balance = calculated_balance
-		self.save
+		self.save!
 	end
 
-	def create_quickbooks_invoice
-		token_string = "eyJlbmMiOiJBMTI4Q0JDLUhTMjU2IiwiYWxnIjoiZGlyIn0..Am9n_IT37EmuptVU54NRlQ.MWixCcyFOo25NRaH8_NKjyzM2WtDpDdmR4Rav1K2JJmn9FXst7Fc-d0p4Y428CHMHmkhWOP5KoJJYJ-BUfT6fjeaxAupaClVF-5cDCRbiMGYGnrCrRXkTAB93vWGMBSdJIKb_G6rbu3ddJDJ702d0uDPJYmSbEEKt3MJllLq16TrC7vVhFouAUfjsVh0MU-FD0g2ZeVgN2wE5mt4aOaeQ6Z4qRGvxFnOgniJLALftWcfEFWRiSGFdkovB9ukMsOwOV6aiaKQALEmcYkSlG89YbCgSkZCGWe8sY1-JKnm9DlTZLGkSQ3ZAGWfKt2etJGg4FgtlLVWDipe3gthuoy4EOKZCEDQZm76n8dvRvJylhoyat_jdFxPX7TmPwUcE8382nN_NM_R1oZveNvk5cdywdm-U8LUxWqR0T5rX_SSR1qw3mUFDKow65h0x5Bmo0w8QXEJQ9NHCk-9HFr4NnvP70laJ-D7XByxavXrUFlKHSq-tgHwUJQMfXK1Lox3YvBJOVsgRioYOHA63-ICAYvWWnfv1nH45fGFfDa2wbwwlXxlTju_BA8xW_4Q3FzU3WVQpIv-5qVRjg2W-yC98duhnQvcXYEzcCszU7iXzqqcLSJsxP61mH4sZAJXMCDoB_1jp-ria48iL51zNM-0JXT2gq6riRE7bHFiRq-zb9g9Af3maiz_MURSBhlnftj1Ywch.AEaa2IEWNZkXMkZrgsGl1w"
-		qbo_api = QboApi.new(access_token: token_string, realm_id: 123145871611354)
-		account = self
- 		customer = {
-			    "BillAddr": {
-			        "Line1": account.address1,
-			        "Line2": account.address2,
-			        "City": "Mountaina View",
-			        "Country": "UaSA",
-			        "CountrySubDivisionCode": "CaA",
-			        "PostalCode": "940a42"
-				    },
-				    # "Notes": "Here are other details.",
-				    "Title": "Mra",
-				    "GivenName": account.owner_first_name,
-				    "FamilyName": account.owner_last_name,
-				    "Suffix": "Jar",
-				    # "FullyQualifiedName": "King Grocerieas",
-				    "CompanyName": account.company,
-				    "DisplayName": account.registration,
-				    "PrimaryPhone": {
-				        "FreeFormNumber": account.telephone
-				    },
-				    "PrimaryEmailAddr": {
-				        "Address": "jdrew@myemail.coam"
-					       }
-					   }
-			response = qbo_api.create(:customer, payload: customer)
+	def create_quickbooks_customer
+			qbo_api = QboApi.new(access_token: self.airport.token, realm_id: self.airport.realm_id)
+			account = self
+	 		customer = {
+				    "BillAddr": {
+				        "Line1": account.address1,
+				        "Line2": account.address2,
+				        "City": account.city,
+				        "Country": "USA",
+				        "CountrySubDivisionCode": account.city,
+				        "PostalCode": account.zip
+					    },
+					    # "Notes": "Here are other details.",
+					    "GivenName": account.owner_first_name,
+					    "FamilyName": account.owner_last_name,
+					    "CompanyName": account.company,
+					    "Notes": account.registration,
+					    "PrimaryPhone": {
+					        "FreeFormNumber": account.telephone
+					    },
+					    "PrimaryEmailAddr": {
+					        "Address": account.email
+						       }
+						   }
+				response = qbo_api.create(:customer, payload: customer)
+				self.quickbooks_customer_id = response['Id']
+				self.save!
+		end
 	end
-end
 
 
 # {

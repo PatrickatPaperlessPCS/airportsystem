@@ -1,3 +1,48 @@
 <h2>Editing Account Record</h2>
+<%= simple_form_for(@account) do |f| %>
+  <%= f.error_notification %>
+ <body class="subdued">
+  </br>
+  <div class="modal-dialog">
+    <div class="modal-content">
 
-<%= render 'form' %>
+      <div class="modal-body">
+		  <div class="form-inputs">
+		  	<strong> Aircraft Registration:</strong>
+		  	<%= f.text_field :registration %> <br>
+		  	<strong> Owner First Name: </strong>
+		  	<%= f.text_field :owner_first_name %><br>
+		  	<strong> Owner Last Name: </strong>
+		  	<%= f.text_field :owner_last_name %><br>
+		  	<strong> Company: </strong>
+		  	<%= f.text_field :company %><br>		  			  
+		  	<strong> Address Line 1: </strong>
+		  	<%= f.text_field :address1 %><br>
+			<strong> Address Line 2: </strong>
+		  	<%= f.text_field :address2 %><br>
+		  	<strong> City: </strong>
+		  	<%= f.text_field :city %><br>
+		  	<strong> State: </strong>
+		  	<%= f.text_field :state %><br>
+		  	<strong> Zip: </strong>
+		  	<%= f.text_field :zip %><br>
+		  	<strong> Telephone: </strong>
+		  	<%= f.text_field :telephone %><br>
+		  	<strong> Owner's Email Address: </strong>
+		  	<%= f.text_field :email %><br>
+		  	<hr>
+		  	<strong> Close Account to new charges: </strong>
+		  	<%= f.input :account_closed, as: :boolean  %><br>
+		  </div>
+		  <center>
+		  <div class="form-actions">
+		    <%= f.button :submit, class: 'btn btn-primary' %>
+		  </div>
+		  <br>
+			<%= link_to 'Back', accounts_path %></center>
+
+        </div>
+    </div>
+  </div>
+
+<% end %>

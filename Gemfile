@@ -28,11 +28,9 @@ gem 'bootstrap-sass', '~> 3.3.6'
 gem 'stripe'
 gem 'figaro'
 gem 'will_paginate', '~> 3.1.0'
-gem 'rails_12factor', group: :production
-gem 'quickbooks-ruby'
 gem 'qbo_api'
-gem 'omniauth-openid'
-gem 'omniauth-quickbooks'
+gem 'oauth2'
+gem 'acts_as_paranoid'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -41,6 +39,7 @@ gem 'omniauth-quickbooks'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+gem 'rails_12factor', group: :production
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

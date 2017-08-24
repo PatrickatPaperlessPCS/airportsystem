@@ -1,0 +1,2 @@
+module QuickbooksAuthorizationsHelper
+end

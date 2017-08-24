@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170803203911) do
+ActiveRecord::Schema.define(version: 20170821204800) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,8 +21,8 @@ ActiveRecord::Schema.define(version: 20170803203911) do
     t.string   "registration"
     t.decimal  "balance"
     t.date     "last_payment_date"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
     t.integer  "airport_id"
     t.string   "owner"
     t.string   "address1"
@@ -35,7 +35,12 @@ ActiveRecord::Schema.define(version: 20170803203911) do
     t.string   "owner_first_name"
     t.string   "owner_last_name"
     t.string   "company"
+    t.string   "quickbooks_customer_id"
+    t.datetime "deleted_at"
+    t.boolean  "account_closed",         default: false, null: false
   end
+
+  add_index "accounts", ["deleted_at"], name: "index_accounts_on_deleted_at", using: :btree
 
   create_table "airports", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -64,6 +69,8 @@ ActiveRecord::Schema.define(version: 20170803203911) do
     t.string   "access_token"
     t.string   "access_secret"
     t.string   "company_id"
+    t.boolean  "connected_to_qb"
+    t.string   "qb_account_id"
   end
 
   add_index "airports", ["email"], name: "index_airports_on_email", unique: true, using: :btree
