@@ -6,6 +6,9 @@ class Invoice < ActiveRecord::Base
 	after_save :deduct_from_inventory
 	belongs_to :airport
 	validates_presence_of :line_items
+	
+	before_save :find_associated_account
+	
 
 	# after_save :create_quickbooks_invoice
 
@@ -16,6 +19,15 @@ class Invoice < ActiveRecord::Base
 
 		scope :unpaid, -> {where(paid: [nil, false])}
 		scope :paid, -> {where(paid: true)}
+
+
+		def find_associated_account
+				sanitize_registration = self.registration.strip.upcase.gsub(" ", "")
+			account = Account.find_by(registration: sanitize_registration)
+			if account
+				self.account = account
+			end
+		end
 
 		def compute_total_amount
 			puts self.line_items.inspect

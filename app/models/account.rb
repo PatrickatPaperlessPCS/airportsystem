@@ -4,9 +4,16 @@ require 'qbo_api'
 	has_many :invoices, dependent: :destroy
 	after_touch :persist_account_balance
 	# after_create :create_quickbooks_customer
-	belongs_to :airport
+	# belongs_to :airport
+	before_save :normalize_registration
+	validates_format_of :registration, with: /\A[a-zA-Z0-9]*\z/
+	validates_uniqueness_of :registration
 
 	scope :open, -> {where(account_closed: [nil, false])}
+
+	def normalize_registration
+		self.registration = self.registration.strip.upcase.gsub(" ", "")
+	end
 
 	def calculated_balance
 		invoices.sum(:total)

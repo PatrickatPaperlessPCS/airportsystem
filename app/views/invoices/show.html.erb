@@ -71,7 +71,7 @@
           <% end %>
            </td>
         <td style="text-align: left;"><%= line_item.long_description %></td>
-        <td><%= line_item.price %></td>
+        <td><%= number_to_currency(line_item.price) %></td>
         <td><%= line_item.units %></td>
         <td><%= number_to_currency(line_item.tax_amount) %></td>
         <td><%= number_to_currency(line_item.total) %></td>

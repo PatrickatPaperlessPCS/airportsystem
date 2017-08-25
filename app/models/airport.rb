@@ -5,7 +5,7 @@ class Airport < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
          has_many :invoices
-         has_many :accounts
+         # has_many :accounts
          has_many :inventories
          has_many :automated_transactions
 

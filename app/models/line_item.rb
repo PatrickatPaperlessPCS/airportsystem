@@ -4,7 +4,8 @@ class LineItem < ActiveRecord::Base
 	before_save :persist_calculations
 	validates_presence_of :price, :units
 	belongs_to :airport
-
+	validates_numericality_of :price, :units
+	
 	def calculated_total
 		price * units + calculated_tax
 	end
@@ -13,7 +14,7 @@ class LineItem < ActiveRecord::Base
 		if self.tax_rate.present?
 			self.price * self.tax_rate
 		else
-			self.price
+			0
 		end
 	end
 

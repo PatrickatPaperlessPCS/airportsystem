@@ -2,7 +2,7 @@
   <%= f.error_notification %>
   <div class="form-inputs">
     <h4>Aircraft Registration:</h4>
-    <%= f.collection_select :account_id, current_airport.accounts.open, :id, :registration%>
+   <%= f.input :registration %>
   </div>
 
   <table class='table invoice-table'>
