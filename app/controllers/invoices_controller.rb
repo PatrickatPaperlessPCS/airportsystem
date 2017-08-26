@@ -5,7 +5,6 @@ class InvoicesController < ApplicationController
   # GET /invoices.json
   def index
     @invoices = current_airport.invoices.order("created_at DESC").paginate(:page => params[:page], :per_page => 15)
-    # current_user.patients.order("created_at DESC")
     # TODO - remove for Airport level authenication.
     # if current_airport.type = 1
     # redirect_to automated_transactions_path, notice: 'You are not subscribed to this feature, contact sales to upgrade' 
