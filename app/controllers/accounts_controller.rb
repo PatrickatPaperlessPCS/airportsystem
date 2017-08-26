@@ -4,7 +4,7 @@ class AccountsController < ApplicationController
   # GET /accounts
   # GET /accounts.json
   def index
-    @accounts = Account.all.order("created_at DESC").paginate(:page => params[:page], :per_page => 15)
+    @accounts = Accounts.all.order("registration DESC").paginate(:page => params[:page], :per_page => 15)
     # @accounts = Account.all
   end
 

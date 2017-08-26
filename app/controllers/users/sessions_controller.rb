@@ -8,6 +8,8 @@ class Users::SessionsController < Devise::SessionsController
 
   # POST /resource/sign_in
   def create
+     self.resource = resource_class.new(sign_in_params)
+     store_location_for(resource, params[:redirect_to])
     super
   end
 

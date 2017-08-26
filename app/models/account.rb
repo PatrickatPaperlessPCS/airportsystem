@@ -1,5 +1,6 @@
 class Account < ActiveRecord::Base
 require 'qbo_api'	
+	belongs_to :user
 	has_many :payments
 	has_many :invoices, dependent: :destroy
 	after_touch :persist_account_balance

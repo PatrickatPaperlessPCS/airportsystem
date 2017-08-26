@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
-  devise_for :users, path: 'users', controllers: { sessions: "users/sessions", views: "users/"}
-  resources :inventories
-  get 'pages/index'
+  # devise_for :users, path: 'users', controllers: { }
+  devise_for :users, controllers: { views: "users/" }
 
+  resources :inventories
+  
+  get 'pages/index'
+  get 'pages/my_accounts'
   resources :accounts 
   resources :payments
   devise_for :airports
