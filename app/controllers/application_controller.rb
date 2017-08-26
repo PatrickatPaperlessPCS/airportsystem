@@ -10,6 +10,10 @@ class ApplicationController < ActionController::Base
       invoices_path
     end  
     
+    def after_sign_in_path_for(users)
+      accounts_path
+    end  
+
      protected
 
     def logged_in
