@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
      protected
 
     def logged_in
-      unless current_airport
+      unless current_airport || current_user
         redirect_to root_path, notice: "You must sign in "
       end
     end

@@ -34,16 +34,17 @@
 	    </div>
 	  </div>
 <br>
-<center>
-<div class="btn-group" role="group" aria-label="Basic example">
-<%= button_to("Paid Invoices", account_path(@account), paid: true, method: :get, class: 'btn btn-primary')%> <%= button_to("Unpaid Invoices", account_path(@account), unpaid: true, method: :get, class: 'btn btn-primary')%>
-	</div>
-</center>
 </div>
-<% if @show_paid %>
-    <%= render 'paid' %>
-<% end %>
-<% if @show_unpaid %> 
-    <%= render 'unpaid' %>
-<% end %> 
+<center>
+	<%= link_to "Paid Invoices", account_path(@account, paid: true)%>  |   
+	<%= link_to "Unpaid Invoices", account_path(@account, unpaid: true)%>
+<br><br>
+	<% if @show_paid %>
+	<%= render 'paid' %>
+	<% end %>
+
+	<% if @show_unpaid %>
+	<%= render 'unpaid' %>
+	<% end %>
+
 <%= link_to 'Back', invoices_path %>

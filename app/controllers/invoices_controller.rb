@@ -1,5 +1,6 @@
 class InvoicesController < ApplicationController
   before_action :set_invoice, only: [:show, :edit, :update, :destroy]
+  before_action :logged_in, unless: :devise_controller? 
 
   # GET /invoices
   # GET /invoices.json

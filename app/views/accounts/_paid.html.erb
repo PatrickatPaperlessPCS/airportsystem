@@ -46,6 +46,7 @@
           <thead>
             <tr>
               <th>Invoice Number</th>
+              <th>Airport</th>
               <th>Invoice Date</th>
               <th>Invoice Total</th>
             </tr>
@@ -55,6 +56,7 @@
             <% @account.invoices.paid.each do |invoice| %>
               <tr>
                 <td><%= invoice.id%> </td>
+                <td><%= invoice.airport.name %> </td>
                 <td style="text-align: left;"><%= invoice.created_at.time.to_formatted_s(:long)%> Zulu </td>
                 <td><%= invoice.total %></td>
               </tr>

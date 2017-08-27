@@ -47,8 +47,10 @@
           <thead>
             <tr>
               <th>Invoice Number</th>
+              <!-- <th>Airport</th> -->
               <th>Invoice Date</th>
               <th>Invoice Total</th>
+              <th></th>
             </tr>
           </thead>
 
@@ -56,8 +58,10 @@
             <% @account.invoices.unpaid.each do |invoice| %>
               <tr>
                 <td><%= invoice.id%> </td>
+  
                 <td style="text-align: left;"><%= invoice.created_at.time.to_formatted_s(:long)%> Zulu </td>
                 <td><%= invoice.total %></td>
+                <td><%= link_to "Pay Now", root_path %> </td>
               </tr>
             <% end %>
           </tbody>

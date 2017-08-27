@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170826190521) do
+ActiveRecord::Schema.define(version: 20170826223326) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 20170826190521) do
     t.string   "quickbooks_customer_id"
     t.datetime "deleted_at"
     t.boolean  "account_closed",         default: false, null: false
+    t.string   "auth_token"
   end
 
   add_index "accounts", ["deleted_at"], name: "index_accounts_on_deleted_at", using: :btree

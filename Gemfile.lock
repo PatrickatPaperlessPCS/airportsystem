@@ -110,6 +110,12 @@ GEM
       rack (>= 1.2, < 3)
     orm_adapter (0.5.0)
     pg (0.21.0)
+    postmark (1.7.1)
+      json
+      rake
+    postmark-rails (0.12.0)
+      actionmailer (>= 3.0.0)
+      postmark (~> 1.7.0)
     qbo_api (1.5.0)
       faraday
       faraday-detailed_logger
@@ -220,6 +226,7 @@ DEPENDENCIES
   jquery-rails
   oauth2
   pg
+  postmark-rails
   qbo_api
   rails (= 4.2.3)
   rails_12factor
