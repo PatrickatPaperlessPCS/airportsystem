@@ -97,5 +97,14 @@
 
 <br>
 <center>
-<%= button_to('Back', invoices_path, method: :get, class: 'btn btn-primary') %>
+<% unless @invoice.paid == true %>
+    <% if airport_signed_in? %>
+    <%= button_to("Pay Now", root_path, method: :get, class: 'btn btn-success btn-pad') %>
+    <% if @invoice.account %>
+    <%= button_to("Add to Account", root_path, method: :get, class: 'btn btn-warning btn-pad') %>
+    <% end %>
+    <% end %>
+<% end %>
+<center>
+<%= button_to('Back', invoices_path, method: :get, class: 'btn btn-primary btn-pad') %>
 </center>

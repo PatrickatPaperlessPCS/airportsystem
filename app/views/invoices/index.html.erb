@@ -23,10 +23,13 @@
           Cash Purchase
           <% end %> </td>
         <td><%= invoice.created_at.time.to_formatted_s(:long)%> Zulu </td>
-        <td><%= invoice.paid %></td>
+        <td><% if invoice.paid == true %><%= image_tag "check.png", width: 10, hieght: 10 %><% end %></td>
         <td><%= number_to_currency(invoice.total) %></td>
         <td><%= link_to 'View Invoice', invoice %></td>
-        <td><%= link_to 'Delete', invoice, method: :delete, data: { confirm: 'Are you sure? The customer will not be billed for the invoice amount if the invoice is deleted!' } %></td>
+        <td><% unless invoice.paid == true %>
+          <%= link_to 'Delete', invoice, method: :delete, data: { confirm: 'Are you sure? The customer will not be billed for the invoice amount if the invoice is deleted!' } %>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>
