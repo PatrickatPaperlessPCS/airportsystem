@@ -32,7 +32,8 @@ gem 'qbo_api'
 gem 'oauth2'
 gem 'acts_as_paranoid'
 gem 'postmark-rails'
-
+gem "recaptcha", require: "recaptcha/rails"
+gem "attr_encrypted", "~> 3.0.0"
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :logged_in, unless: :devise_controller? 
   before_action :configure_permitted_parameters, if: :devise_controller?
+  
   include Accessible
     skip_before_action :check_user, only: :destroy
 
@@ -16,7 +17,7 @@ class ApplicationController < ActionController::Base
     #   pages_my_accounts_path
     # end  
 
-     protected
+    protected
 
     def logged_in
       unless current_airport || current_user
@@ -28,4 +29,6 @@ class ApplicationController < ActionController::Base
 	    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :address1, :address2, :city, :state, :zip, :phone])
 	    devise_parameter_sanitizer.permit(:account_update, keys: [:name, :address1, :address2, :city, :state, :zip, :phone])
     end
+
+
 end

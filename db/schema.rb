@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170826223326) do
+ActiveRecord::Schema.define(version: 20170828222335) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,8 +21,8 @@ ActiveRecord::Schema.define(version: 20170826223326) do
     t.string   "registration"
     t.decimal  "balance"
     t.date     "last_payment_date"
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
     t.integer  "airport_id"
     t.string   "owner"
     t.string   "address1"
@@ -37,8 +37,12 @@ ActiveRecord::Schema.define(version: 20170826223326) do
     t.string   "company"
     t.string   "quickbooks_customer_id"
     t.datetime "deleted_at"
-    t.boolean  "account_closed",         default: false, null: false
+    t.boolean  "account_closed",           default: false, null: false
     t.string   "auth_token"
+    t.string   "acct"
+    t.string   "routing"
+    t.string   "encrypted_account_num"
+    t.string   "encrypted_account_num_iv"
   end
 
   add_index "accounts", ["deleted_at"], name: "index_accounts_on_deleted_at", using: :btree

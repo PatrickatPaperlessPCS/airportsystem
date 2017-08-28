@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   # devise_for :users, path: 'users', controllers: { }
-  devise_for :users, controllers: { views: "users/" }
+  devise_for :users, controllers: { views: "users/", registrations: "users/registrations"}
 
   resources :inventories
   
