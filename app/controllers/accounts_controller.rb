@@ -31,8 +31,6 @@ class AccountsController < ApplicationController
   # POST /accounts.json
   def create
     @account = Account.new(account_params)
-    @account.airport_id = current_airport.id
-    puts current_airport
     respond_to do |format|
       if @account.save
         Invitation.invitation_email(@account).deliver_now!

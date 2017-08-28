@@ -12,7 +12,7 @@ class LineItem < ActiveRecord::Base
 
 	def calculated_tax
 		if self.tax_rate.present?
-			self.price * self.tax_rate
+			self.price * self.tax_rate * self.units
 		else
 			0
 		end

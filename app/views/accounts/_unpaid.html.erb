@@ -18,20 +18,14 @@
                         </td>
                     </tr>
                     
-                    <tr class="information">
+                    <tr class="information textalign-right">
                         <td colspan="2">
                             <table>
-                                <tr>
-                                    <td>
-                                        <%= current_airport.name %><br>
-                                        <%= current_airport.address1 %><br>
-                                        <%= current_airport.address2 %><br>
-                                        <%= current_airport.city %>, <%= current_airport.state %> <%= current_airport.zip %>
-                                    </td>
-                                    
+                                <tr>                                 
                                     <td>
                                     <strong>Aircraft Registration:</strong><%= @account.registration %><br>
-                                    <%= @account.owner %><br>
+                                    <%= @account.owner_first_name %> <%= @account.owner_last_name %><br>
+                                    <%= @account.company %>
                                     <%= @account.address1 %><br>
                                     <%= @account.address2 %><br>
                                     <%= @account.city %>,<%= @account.state %> <%= @account.zip %><br>
@@ -47,7 +41,7 @@
           <thead>
             <tr>
               <th>Invoice Number</th>
-              <!-- <th>Airport</th> -->
+              <th>Airport</th>
               <th>Invoice Date</th>
               <th>Invoice Total</th>
               <th></th>
@@ -58,9 +52,9 @@
             <% @account.invoices.unpaid.each do |invoice| %>
               <tr>
                 <td><%= invoice.id%> </td>
-  
+                <td style="text-align: left;"><%= invoice.airport.name %> </td>
                 <td style="text-align: left;"><%= invoice.created_at.time.to_formatted_s(:long)%> Zulu </td>
-                <td><%= invoice.total %></td>
+                <td><%= number_to_currency(invoice.total) %></td>
                 <td><%= link_to "Pay Now", root_path %> </td>
               </tr>
             <% end %>

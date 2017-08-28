@@ -1,8 +1,6 @@
-Your accounts
 <p id="notice"><%= notice %></p>
 
-<h2 class="padding1">Your Accounts</h2>
-
+<h3 class="padding1">Your Aircraft Accounts</h3>
 <table class="table table-hover">
   <thead>
     <tr>
@@ -21,7 +19,6 @@ Your accounts
         <td><%= account.last_payment_date %></td>
         <td><%= link_to 'View Account Details', account %></td>
         <td><%= link_to 'Edit Account Information', edit_account_path(account) %></td>
-        <td><%= link_to 'Destroy', account, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -29,5 +26,5 @@ Your accounts
 
 <br>
 <center>
-<%= button_to('Create a New Account', new_account_path, method: :get, class: 'btn btn-primary')%>
+Signed in as: <%= current_user.email %>
 </center>

@@ -17,29 +17,23 @@
                     </td>
                 </tr>
                 
-                <tr class="information">
-                    <td colspan="2">
-                        <table>
-                            <tr>
-                                <td>
-                                    <%= current_airport.name %><br>
-                                    <%= current_airport.address1 %><br>
-                                    <%= current_airport.address2 %><br>
-                                    <%= current_airport.city %>, <%= current_airport.state %> <%= current_airport.zip %>
-                                </td>
-                                
-                                <td>
-                                <strong>Aircraft Registration:</strong><%= @account.registration %><br>
-                                <%= @account.owner %><br>
-                                <%= @account.address1 %><br>
-                                <%= @account.address2 %><br>
-                                <%= @account.city %>,<%= @account.state %> <%= @account.zip %><br>
-                                <%= @account.email %>
-                                </td>
-                            </tr>
-                        </table>
-                    </td>
-                </tr>
+                    <tr class="information textalign-right">
+                        <td colspan="2">
+                            <table>
+                                <tr>                                 
+                                    <td>
+                                    <strong>Aircraft Registration:</strong><%= @account.registration %><br>
+                                    <%= @account.owner_first_name %> <%= @account.owner_last_name %><br>
+                                    <%= @account.company %>
+                                    <%= @account.address1 %><br>
+                                    <%= @account.address2 %><br>
+                                    <%= @account.city %>,<%= @account.state %> <%= @account.zip %><br>
+                                    <%= @account.email %>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
     </div>            
 
         <table class="table">
@@ -56,9 +50,9 @@
             <% @account.invoices.paid.each do |invoice| %>
               <tr>
                 <td><%= invoice.id%> </td>
-                <td><%= invoice.airport.name %> </td>
+                <td style="text-align: left;"><%= invoice.airport.name %> </td>
                 <td style="text-align: left;"><%= invoice.created_at.time.to_formatted_s(:long)%> Zulu </td>
-                <td><%= invoice.total %></td>
+                <td><%= number_to_currency(invoice.total) %></td>
               </tr>
             <% end %>
           </tbody>
