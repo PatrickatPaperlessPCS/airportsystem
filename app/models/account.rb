@@ -18,7 +18,7 @@ require 'qbo_api'
 	before_save :find_associated_user
 
 
-	attr_encrypted :account_num, key: "thisis8970809u09u09yu09u09u09u809u0y08hinknk"
+	attr_encrypted :account_num, key: ENV["ATTR_ENCRYPTED_KEY"]
 
 
 	def normalize_registration
