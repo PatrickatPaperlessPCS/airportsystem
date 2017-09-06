@@ -32,7 +32,8 @@
                             <% if @invoice.account.present? %>
                             <td>
                             <strong>Aircraft Registration:</strong> <%= @invoice.account.registration %><br>
-                            <%= @invoice.account.owner %><br>
+                            <%= @invoice.account.owner_first_name %> <%= @invoice.account.owner_last_name %><br>
+                            <%= @invoice.account.company %><br>
                             <%= @invoice.account.address1 %><br>
                             <%= @invoice.account.address2 %><br>
                             <%= @invoice.account.city %>,<%= @invoice.account.state %> <%= @invoice.account.zip %><br>

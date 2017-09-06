@@ -8,4 +8,13 @@ class Invitation < ApplicationMailer
 	  :track_opens => 'true'
 	)
 	end
+
+	def new_invoice_email(invoice)
+		@invoice = invoice
+	     mail(
+	  :subject => "You've recieved a new invoice" ,
+	  :to  => @invoice.account.email ,
+	  :track_opens => 'true'
+	)
+	end
 end

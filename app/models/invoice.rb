@@ -8,7 +8,6 @@ class Invoice < ActiveRecord::Base
 	validates_presence_of :line_items
 	
 	before_save :find_associated_account
-	
 
 	# after_save :create_quickbooks_invoice
 
@@ -19,6 +18,7 @@ class Invoice < ActiveRecord::Base
 
 		scope :unpaid, -> {where(paid: [nil, false])}
 		scope :paid, -> {where(paid: true)}
+
 
 
 		def find_associated_account

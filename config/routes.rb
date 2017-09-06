@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   
   get 'pages/index'
   get 'pages/my_accounts'
+  get 'admin_panel/today'
   resources :accounts 
   resources :payments
   devise_for :airports
