@@ -26,8 +26,10 @@ class AutomatedTransactionsController < ApplicationController
   # POST /automated_transactions.json
   def create
     @automated_transaction = AutomatedTransaction.new(automated_transaction_params)
-    @automated_transaction.registration = @automated_transaction.account.registration
     @automated_transaction.airport_id = current_airport.id
+    if @automated_transaction.account
+    @automated_transaction.registration = @automated_transaction.account.registration
+    end
     respond_to do |format|
       if @automated_transaction.save
         format.html { redirect_to automated_transactions_path, notice: 'Automated transaction was successfully created.' }

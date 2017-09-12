@@ -20,7 +20,6 @@ class Invoice < ActiveRecord::Base
 		scope :paid, -> {where(paid: true)}
 
 
-
 		def find_associated_account
 				sanitize_registration = self.registration.strip.upcase.gsub(" ", "")
 			account = Account.find_by(registration: sanitize_registration)

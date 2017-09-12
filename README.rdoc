@@ -1,28 +1,25 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is an interesting side project I'm working on that ties a payments platform to a market-specific Point of Sale system.  
 
-Things you may want to cover:
+This is targeted at small airports and aircraft owners.  The overriding concept is an extension of the concept of in-house accounts.  Many aircraft owners have in-house accounts with the airport at which they're based that they add transactions to and pay them off monthly.  This application allows any airport on the platform to add charges to any "in-house account", effectively mimicking the function of PayPal or Venmo. Actual payments would be done by me on the back end via ACH draft.
 
-* Ruby version
+This application uses Ruby on Rails with a bit of vanilla Javascript.  Unique features of this application are extensive finanical calculations done in various models and encrypted storage of bank account credientails using the attr_encrypted gem.  
 
-* System dependencies
+General gemstack information:
 
-* Configuration
+devise - provides authentication
+simple_form - general form builder
+bootstrap-sass - imports the twitter bootstrap framework
+stripe - installed to support payments, not yet built out
+figaro - used to store environmental variables
+will_paginate - basic pagination gem
+qbo_api - api framework to communicate with QuickBooks Online.  Began integration, but have not completed
+oauth2 - OAuth as required for Quickbooks integration
+acts_as_paranoid - prevents accidental deletion of invoices that would mess up balances of accounts
+postmark-rails - API wrapper for postmark, used as emailer for transactional emails
+recaptcha - imports Google recaptcha via API to prevent spam sign ups
+attr_encrypted - gem supporting credential encryption
 
-* Database creation
+This application should be considered incomplete as of 9/12/17, but can be viewed at www.AeroPay.io
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.

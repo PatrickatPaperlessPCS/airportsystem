@@ -7,21 +7,22 @@
   <%= csrf_meta_tags %>
 </head>
 <% if airport_signed_in? %>
-      <nav class="navbar navbar-inverse">
+      <nav class="navbar navbar-inverse nav-justified">
         <div class="container-fluid">
           <div class="navbar-header">
-            <a href='/pages/index'><%= image_tag 'airportap.png', class:"navbar-brand navbar-image", height: '100', width: '120'%></a>
-      <ul class="nav navbar-nav">
-                <li><%= link_to "Invoices", invoices_path %> </li>
-                <li><%= link_to "Accounts", accounts_path %></li>
-                <li><%= link_to "Inventory", inventories_path %></li>
-                <li><%= link_to "Recurring Transactions", automated_transactions_path %> </li>
+            <a href='/pages/index'><%= image_tag 'airportap.png', class:"navbar-brand navbar-image",class:"navbar-brand navbar-image", height: '100', width: '120'%></a>
+            <ul class="nav navbar-nav">
+                <li><%= button_to "New Charge", new_invoice_path, method: :get, class:"btn btn-success btn-sm navbar-btn" %> </li>
+                <li><%= link_to "Monthly Leases", automated_transactions_path %> </li>                
+                <li><%= link_to "Add an Account", new_account_path %></li>
+                <li><%= link_to "My Inventory", inventories_path %></li>
             </ul>
-               <ul class="nav navbar-nav navbar-right">
-                   <li><%= link_to "Edit My Profile", edit_airport_registration_path %></li>
-                   <li><%= link_to "Sign Out", destroy_airport_session_path, :method => :delete %></li>
-      <!--              <li><%= link_to "Connect To Quickbooks", quickbooks_authorizations_new_path %></li>
-       -->         </ul>
+          </div>
+            <ul class="nav navbar-nav navbar-right">
+                <li><%= link_to "Edit My Profile", edit_airport_registration_path %></li>
+                <li><%= link_to "Sign Out", destroy_airport_session_path, :method => :delete %></li>
+      <!--      <li><%= link_to "Connect To Quickbooks", quickbooks_authorizations_new_path %></li>
+       -->  </ul>
           </div>
         </div>
       </nav>
