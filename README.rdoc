@@ -14,7 +14,7 @@ simple_form - general form builder
 
 bootstrap-sass - imports the twitter bootstrap framework
 
-stripe - installed to support payments, not yet built out
+stripe - installed to support credit card payments, decided not to integrate at this point because I wanted to fully flesh out the ACH use case 
 
 figaro - used to store environmental variables
 
